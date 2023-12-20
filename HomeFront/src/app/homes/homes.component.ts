@@ -14,7 +14,8 @@ constructor(private http: HttpClient){}
 home: any;
 getHomes()
 {
-  this.http.get("http://localhost:8080/getHome")
+  console.log('Testing UI');
+  this.http.get("http://localhost:8080/getEmployees")
   .subscribe((homes) => {
     console.log(homes);
     this.home=homes;

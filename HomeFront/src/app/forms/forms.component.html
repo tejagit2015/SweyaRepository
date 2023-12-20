@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="myform-container" *ngIf="showForm">
+    <h1>{{formTitle}}</h1>
+
+    <form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm.value)">
+
+      <div class="form-group">
+
+        <label for="id">ID</label><br>
+
+        <input type="text" name="id" class="form-control" [(ngModel)] = "id">
+
+      </div>
+
+      <pre></pre>
+
+      <div class="form-group">
+
+        <label for="name">Name</label><br>
+
+        <input type="text" name="name" class="form-control" [(ngModel)] = "name" (input)="ajaxName($event)"> {{empName}}
+
+      </div>
+
+      <pre></pre>
+
+      <div class="form-group">
+
+        <label for="location">Location</label><br>
+
+        <input type="text" name="location" class="form-control" [(ngModel)] = "location">
+
+      </div>
+
+      <pre></pre>
+
+      <pre></pre>
+
+      <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn btn-secondary" type="submit" (click)="closeEmployeeForm()">Cancel</button>
+    </form>
+  </div>
+
+</div>
+<br>
+
+<div style="text-align: right;">
+  <button type="button" class="btn btn-primary" (click)="addEmployeeForm()">Create</button> &nbsp;&nbsp;
+  <button type="button" class="btn btn-primary" (click)="editEmployeeForm()">Edit</button> &nbsp;&nbsp;
+  <button type="button" class="btn btn-primary" (click)="deleteEmployee()">Delete</button>
+</div>
+
+<table class="table table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Select</th>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hm of employeeData">
+      <td><input type="checkbox" name="selectedId" (click)="checkBoxSelected($event)" value="{{hm.id}}" ngModel /></td>
+      <td>{{hm.id}}</td>
+      <td>{{hm.name}}</td>
+      <td>{{hm.location}}</td>
+    </tr>
+  </tbody>
+</table>
